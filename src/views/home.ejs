@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="topnav">
+      <a class="active" href="/">Home</a>
+      <a href="/create">Create User</a>
+    </div>
+    <table>
+      <h2 style="text-align: center; margin-top: 50px; font-size: 40px">
+        List users
+      </h2>
+      <tr>
+        <th>Id</th>
+        <th>Email</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Actions</th>
+      </tr>
+      <% listUsers.forEach( user =>{ %>
+      <tr>
+        <td><%= user.id %></td>
+        <td><%= user.email %></td>
+        <td><%= user.name %></td>
+        <td><%= user.city %></td>
+        <td style="display: flex; gap: 5px">
+          <button>
+            <a href="/update/<%= user.id %>">Edit</a>
+          </button>
+          -
+          <form action="/delete-user/<%= user.id %>" method="post">
+            <button onclick="return confirm('Are you sure?')">Delete</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </table>
+  </body>
+</html>
